@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { Word } from '../types';
-import { X, CheckCircle, XCircle, Trophy, RotateCcw, ArrowRight } from 'lucide-react';
+import { X, CheckCircle, XCircle, Trophy, RotateCcw, ArrowRight, Volume2 } from 'lucide-react';
 
 interface QuizProps {
   words: Word[];
@@ -104,6 +104,12 @@ const Quiz: React.FC<QuizProps> = ({ words, learnedIds, onClose }) => {
     setQuizCompleted(false);
   };
 
+  const speak = (text: string) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ar-SA';
+    window.speechSynthesis.speak(utterance);
+  };
+
   if (quizCompleted) {
     const percentage = Math.round((score / quizQuestions.length) * 100);
     
@@ -184,12 +190,19 @@ const Quiz: React.FC<QuizProps> = ({ words, learnedIds, onClose }) => {
           <p className="text-sm text-emerald-600 mb-3 uppercase tracking-wider font-bold">
             What does this mean?
           </p>
-          <div className="text-6xl font-bold arabic-font text-emerald-900 mb-3">
+          <div className="text-6xl font-bold arabic-font text-emerald-900 mb-3 cursor-pointer hover:text-emerald-700 transition-colors" onClick={() => speak(currentQuestion.word.arabic)}>
             {currentQuestion.word.arabic}
           </div>
-          <div className="text-lg text-teal-600 font-medium mb-1">
+          <div className="text-lg text-teal-600 font-medium mb-3">
             {currentQuestion.word.transliteration}
           </div>
+          <button
+            onClick={() => speak(currentQuestion.word.arabic)}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors shadow-sm"
+          >
+            <Volume2 size={18} />
+            Listen
+          </button>
         </div>
 
         <div className="space-y-3 mb-6">
