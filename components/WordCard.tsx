@@ -34,28 +34,28 @@ const WordCard: React.FC<WordCardProps> = ({
 
   if (viewMode === 'list') {
     return (
-      <div className={`flex items-center justify-between p-4 bg-white border rounded-xl transition-all hover:shadow-sm ${isLearned ? 'border-green-100 bg-green-50/20' : 'border-gray-100'}`}>
+      <div className={`flex items-center justify-between p-4 bg-white border rounded-xl transition-all hover:shadow-sm ${isLearned ? 'border-emerald-200 bg-emerald-50/30' : 'border-emerald-100'}`}>
         <div className="flex items-center gap-6">
-          <div className="w-16 text-2xl font-bold arabic-font text-gray-800">{word.arabic}</div>
+          <div className="w-16 text-2xl font-bold arabic-font text-emerald-900">{word.arabic}</div>
           <div className="flex flex-col">
-            <span className="text-sm font-medium text-pink-600">{word.transliteration}</span>
+            <span className="text-sm font-medium text-teal-600">{word.transliteration}</span>
           </div>
-          <div className="text-gray-700 font-medium">{word.meaning}</div>
+          <div className="text-emerald-800 font-medium">{word.meaning}</div>
         </div>
         
         <div className="flex items-center gap-2">
-          <button onClick={speak} className="p-2 text-gray-400 hover:text-blue-500 transition-colors">
+          <button onClick={speak} className="p-2 text-emerald-400 hover:text-teal-600 transition-colors">
             <Volume2 size={18} />
           </button>
           <button 
             onClick={() => onToggleLearned(word.id)}
-            className={`p-2 transition-colors ${isLearned ? 'text-green-500' : 'text-gray-300 hover:text-green-400'}`}
+            className={`p-2 transition-colors ${isLearned ? 'text-emerald-600' : 'text-gray-300 hover:text-emerald-500'}`}
           >
             <CheckCircle size={20} fill={isLearned ? 'currentColor' : 'none'} />
           </button>
           <button 
             onClick={() => onToggleFavorite(word.id)}
-            className={`p-2 transition-colors ${isFavorite ? 'text-yellow-400' : 'text-gray-300 hover:text-yellow-400'}`}
+            className={`p-2 transition-colors ${isFavorite ? 'text-amber-500' : 'text-gray-300 hover:text-amber-400'}`}
           >
             <Star size={20} fill={isFavorite ? 'currentColor' : 'none'} />
           </button>
@@ -65,46 +65,46 @@ const WordCard: React.FC<WordCardProps> = ({
   }
 
   return (
-    <div className={`relative group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${isLearned ? 'bg-green-50 border-green-200' : 'bg-white border-gray-100'}`}>
+    <div className={`relative group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${isLearned ? 'bg-emerald-50 border-emerald-200' : 'bg-white border-emerald-100'}`}>
       <div className="absolute top-4 right-4 flex gap-2">
          <button 
           onClick={() => onToggleFavorite(word.id)}
-          className={`transition-colors ${isFavorite ? 'text-yellow-400' : 'text-gray-300 group-hover:text-yellow-200'}`}
+          className={`transition-colors ${isFavorite ? 'text-amber-500' : 'text-gray-300 group-hover:text-amber-300'}`}
         >
           <Star size={20} fill={isFavorite ? 'currentColor' : 'none'} />
         </button>
         <button 
           onClick={() => onToggleLearned(word.id)}
-          className={`transition-colors ${isLearned ? 'text-green-500' : 'text-gray-300 group-hover:text-green-200'}`}
+          className={`transition-colors ${isLearned ? 'text-emerald-600' : 'text-gray-300 group-hover:text-emerald-300'}`}
         >
           <CheckCircle size={20} fill={isLearned ? 'currentColor' : 'none'} />
         </button>
       </div>
 
       <div className="flex flex-col items-center text-center space-y-3">
-        <span className="text-xs font-bold px-2 py-1 bg-gray-100 text-gray-500 rounded-full uppercase tracking-wider">{word.category}</span>
+        <span className="text-xs font-bold px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full uppercase tracking-wider">{word.category}</span>
         
-        <h2 className="text-4xl font-bold arabic-font text-gray-800 cursor-pointer" onClick={speak}>{word.arabic}</h2>
+        <h2 className="text-4xl font-bold arabic-font text-emerald-900 cursor-pointer" onClick={speak}>{word.arabic}</h2>
         
         <div className="space-y-1">
-          <p className="text-lg font-medium text-pink-500">{word.transliteration}</p>
+          <p className="text-lg font-medium text-teal-600">{word.transliteration}</p>
         </div>
 
-        <div className="w-full h-px bg-gray-50 my-2"></div>
+        <div className="w-full h-px bg-emerald-100 my-2"></div>
         
-        <p className="text-lg text-gray-700 font-semibold">{word.meaning}</p>
+        <p className="text-lg text-emerald-800 font-semibold">{word.meaning}</p>
         
         <div className="flex gap-4 pt-2">
           <button 
             onClick={speak}
-            className="flex items-center gap-1 text-xs text-blue-500 font-medium hover:underline"
+            className="flex items-center gap-1 text-xs text-teal-600 font-medium hover:underline"
           >
             <Volume2 size={14} /> Listen
           </button>
           {word.mnemonic && (
             <button 
               onClick={handleMnemonic}
-              className="flex items-center gap-1 text-xs text-purple-500 font-medium hover:underline"
+              className="flex items-center gap-1 text-xs text-amber-600 font-medium hover:underline"
             >
               <Lightbulb size={14} /> Mnemonic
             </button>
@@ -112,7 +112,7 @@ const WordCard: React.FC<WordCardProps> = ({
         </div>
 
         {showMnemonic && word.mnemonic && (
-          <div className="mt-4 p-3 bg-purple-50 border border-purple-100 rounded-xl text-xs text-purple-700 leading-relaxed animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 leading-relaxed animate-in fade-in slide-in-from-top-2 duration-200">
             <p>{word.mnemonic}</p>
           </div>
         )}
